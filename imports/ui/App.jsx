@@ -10,6 +10,9 @@ import Product from './pages/Product';
 import Cart from './pages/Cart';
 import About from './pages/About';
 import Products from './pages/Products';
+import UserPage from './pages/UserPage';
+
+import Navbar from './components/Navbar';
 
 const Wrapper = ({ children }) => {
     const location = useLocation();
@@ -24,10 +27,13 @@ const Wrapper = ({ children }) => {
 }
 
 export const App = () => (
-    <div style={{ height: '100vh' }}>
-        <BrowserRouter>
-            <Wrapper>
 
+    <BrowserRouter>
+        <Wrapper>
+
+            <div style={{ height: '100vh' }}>
+
+                <Navbar />
 
                 <Routes>
                     <Route path='/' element={<Home />}></Route>
@@ -35,11 +41,13 @@ export const App = () => (
                     <Route path='/products' element={<Products />}></Route>
                     <Route path='/product/:id' action={({ params }) => { }} element={<Product />}></Route>
                     <Route path='/cart' element={<Cart />}></Route>
+                    <Route path='/user-page' element={<UserPage />}></Route>
                 </Routes>
 
 
+            </div>
 
-            </Wrapper>
-        </BrowserRouter>
-    </div>
+        </Wrapper>
+    </BrowserRouter>
+
 );

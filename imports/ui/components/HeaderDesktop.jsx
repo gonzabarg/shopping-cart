@@ -1,6 +1,5 @@
 import React from "react";
 
-import { Button } from "@mui/material";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
@@ -84,7 +83,11 @@ const HeaderDesktop = () => {
 
                 </div> */}
                 <div style={menuContainer}>
-                    <AccountCircleIcon />
+
+                    <Link to='/user-page'>
+                        <AccountCircleIcon />
+                    </Link>
+
                 </div>
             </div>
         </>

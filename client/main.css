@@ -37,3 +37,13 @@ body {
 .hk-grotesk-bold {
     font-family: "HKGroteskBold";
 }
+
+h1 {
+    font-size: 4rem !important;
+    font-family: "HKGroteskSemiBold";
+}
+
+h6 {
+    font-size: 0.9rem !important;
+    font-family: "HKGroteskSemiBold";
+}
