@@ -1,10 +1,29 @@
 import React from "react";
 import { useEffect } from "react";
 
+import { useTracker } from 'meteor/react-meteor-data'
+
 import HeaderMobile from "./HeaderMobile";
 import HeaderDesktop from "./HeaderDesktop";
 
+
+const useAccount = () => useTracker(() => {
+    const user = Meteor.user()
+    const userId = Meteor.userId()
+    return {
+        user,
+        userId,
+        isLoggedIn: !!userId
+    }
+}, [])
+
+
 const Navbar = () => {
+
+    const { user, isLoggedIn } = useAccount();
+
+    console.log('USUARIO LOGUEADO: ', user);
+    console.log('IS LOGGED: ', isLoggedIn);
 
     const [width, setWidth] = React.useState(window.innerWidth);
     const breakpoint = 900;
@@ -43,7 +62,7 @@ const Navbar = () => {
 
                 {console.log(width > breakpoint)}
 
-                {width > breakpoint ? <HeaderDesktop /> : <HeaderMobile />}
+                {width > breakpoint ? <HeaderDesktop username={user ? user.username : ''} /> : <HeaderMobile />}
 
             </nav>
         </>

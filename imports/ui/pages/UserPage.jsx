@@ -45,8 +45,6 @@ const UserPage = () => {
                     </Row>
                 </Container>
 
-
-
             </section>
         </>
     )

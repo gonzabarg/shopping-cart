@@ -1,4 +1,6 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
+
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { useLayoutEffect } from 'react';
 
@@ -26,7 +28,9 @@ const Wrapper = ({ children }) => {
     return children
 }
 
+
 export const App = () => (
+
 
     <BrowserRouter>
         <Wrapper>

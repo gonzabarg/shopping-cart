@@ -1,11 +1,11 @@
 import React from "react";
 
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Dropdown from 'react-bootstrap/Dropdown';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
 import { Link } from "react-router-dom";
 
-const HeaderDesktop = () => {
+const HeaderDesktop = ({ username }) => {
 
     const desktopFlex = {
         width: '95%',
@@ -16,11 +16,11 @@ const HeaderDesktop = () => {
     }
 
     const logoContainer = {
-        width: '15%'
+        width: 'auto'
     }
 
     const optionsContainer = {
-        width: '50%',
+        width: 'auto',
 
     }
 
@@ -30,7 +30,8 @@ const HeaderDesktop = () => {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'flex-start',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom: '0'
 
     }
 
@@ -43,7 +44,12 @@ const HeaderDesktop = () => {
     }
 
     const menuContainer = {
-        with: 'auto'
+        width: 'auto',
+        padding: '0.5rem 1.5rem',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 
     return (
@@ -53,7 +59,13 @@ const HeaderDesktop = () => {
             <div style={desktopFlex}>
                 <div style={logoContainer}>
 
-                    <ShoppingCartIcon />
+                    <Link className="text-decoration-none text-dark" to="/">
+
+                        <span className="logo">
+                            Sell
+                        </span>
+
+                    </Link>
 
                 </div>
 
@@ -84,9 +96,27 @@ const HeaderDesktop = () => {
                 </div> */}
                 <div style={menuContainer}>
 
-                    <Link to='/user-page'>
-                        <AccountCircleIcon />
-                    </Link>
+                    {username ?
+                        <p className="hk-grotesk-semi-bold mb-0 me-2">
+                            {username}
+                        </p> :
+                        console.log('No hay usuario logueado')
+                    }
+
+                    <Dropdown>
+                        <Dropdown.Toggle variant="transparent" id="dropdown-basic">
+                            <AccountCircleOutlinedIcon style={{ color: 'black' }} />
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                            <Dropdown.Item href="#/action-1">
+                                <Link className="text-decoration-none text-dark " to='/user-page'>
+                                    My profile
+                                </Link>
+                            </Dropdown.Item>
+                            <Dropdown.Item href="#/action-2">Logout</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
 
                 </div>
             </div>
