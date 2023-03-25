@@ -1,4 +1,39 @@
 body {
-  padding: 10px;
-  font-family: sans-serif;
+    margin: 0;
+}
+
+@font-face {
+    font-family: "HKGrotesk";
+    src: url("./fonts/HKGrotesk-Regular.woff") format("woff");
+}
+
+@font-face {
+    font-family: "HKGroteskMedium";
+    src: url("./fonts/HKGrotesk-Medium.woff") format("woff");
+}
+
+@font-face {
+    font-family: "HKGroteskSemiBold";
+    src: url("./fonts/HKGrotesk-SemiBold.woff") format("woff");
+}
+
+@font-face {
+    font-family: "HKGroteskBold";
+    src: url("./fonts/HKGrotesk-Bold.woff") format("woff");
+}
+
+.hk-grotesk {
+    font-family: "HKGrotesk";
+}
+
+.hk-grotesk-medium {
+    font-family: "HKGroteskMedium";
+}
+
+.hk-grotesk-semi-bold {
+    font-family: "HKGroteskSemiBold";
+}
+
+.hk-grotesk-bold {
+    font-family: "HKGroteskBold";
 }
