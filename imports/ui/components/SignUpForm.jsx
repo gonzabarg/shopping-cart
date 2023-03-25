@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router";
 
 
 import Form from 'react-bootstrap/Form';
@@ -9,6 +10,8 @@ import Alert from 'react-bootstrap/Alert';
 import { Accounts } from 'meteor/accounts-base';
 
 const SignUpForm = () => {
+
+    const navigate = useNavigate();
 
     const [username, setUsername] = React.useState();
     const [email, setEmail] = React.useState();
@@ -31,6 +34,7 @@ const SignUpForm = () => {
             }
 
             console.log('Success');
+            navigate('/');
         })
     }
 
@@ -61,12 +65,12 @@ const SignUpForm = () => {
 
                     <Form.Group className="mb-4" >
                         <Form.Label className="text-muted">Email</Form.Label>
-                        <Form.Control type="email" className="rounded-0" id="email" value={email || ""} onChange={(e) => setEmail(e.target.value)} />
+                        <Form.Control type="email" className="rounded-0" id="emailRegister" value={email || ""} onChange={(e) => setEmail(e.target.value)} />
                     </Form.Group>
 
                     <Form.Group className="mb-4">
                         <Form.Label className="text-muted">Password</Form.Label>
-                        <Form.Control type="password" className="rounded-0" id="password" value={password || ""} onChange={(e) => setPassword(e.target.value)} />
+                        <Form.Control type="password" className="rounded-0" id="passwordRegister" value={password || ""} onChange={(e) => setPassword(e.target.value)} />
                     </Form.Group>
 
                     <div className="mb-4 text-center">
