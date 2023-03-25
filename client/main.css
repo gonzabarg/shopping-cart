@@ -43,6 +43,18 @@ h1 {
     font-family: "HKGroteskSemiBold";
 }
 
+h3 {
+
+    font-size: 2.5rem !important;
+    font-family: "HKGroteskSemiBold";
+
+}
+
+h5 {
+    font-size: 1rem !important;
+    font-family: "HKGroteskSemiBold";
+}
+
 h6 {
     font-size: 0.9rem !important;
     font-family: "HKGroteskSemiBold";
@@ -54,4 +66,9 @@ h6 {
     font-size: 1.5rem;
     letter-spacing: 0.4 !important;
 
+}
+
+.product-thumbnail-text {
+    font-size: 1rem !important;
+    font-weight: 300;
 }
