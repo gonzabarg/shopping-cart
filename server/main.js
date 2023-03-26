@@ -1,37 +1,46 @@
 import { Meteor } from 'meteor/meteor';
-import { LinksCollection } from '/imports/api/links';
+import { fetch } from 'meteor/fetch';
 
-async function insertLink({ title, url }) {
-    await LinksCollection.insertAsync({ title, url, createdAt: new Date() });
-}
+import { productsCollection } from '../imports/api/collections/products';
+import '../imports/api/methods/products';
+import '../imports/api/publications/productPublications';
+
+function insertProduct({ name, description, price, brand, image, thumbnail, detail, stock }) {
+    productsCollection.insert({ name, description, price, brand, image, thumbnail, detail, stock });
+};
+
+
 
 Meteor.startup(async () => {
-    // If the Links collection is empty, add some data.
-    if (await LinksCollection.find().countAsync() === 0) {
-        await insertLink({
-            title: 'Do the Tutorial',
-            url: 'https://www.meteor.com/tutorials/react/creating-an-app',
-        });
 
-        await insertLink({
-            title: 'Follow the Guide',
-            url: 'https://guide.meteor.com',
-        });
+    // If the Products collection is empty, add some data.
 
-        await insertLink({
-            title: 'Read the Docs',
-            url: 'https://docs.meteor.com',
-        });
+    if (await productsCollection.find().countAsync() === 0) {
 
-        await insertLink({
-            title: 'Discussions',
-            url: 'https://forums.meteor.com',
-        });
+        const { products } = await fetch('https://dummyjson.com/products/category/laptops')
+            .then(res => res.json())
+            .catch(e => console.log(e));
+
+        products.forEach((product) => {
+
+            console.log('Producto individual: ', product);
+
+            insertProduct({
+                name: product.title,
+                description: product.description,
+                price: product.price,
+                brand: product.brand,
+                image: product.images[0],
+                thumbnail: product.thumbnail,
+                brand: product.brand,
+                stock: product.stock
+            });
+        })
+
+
+    } else {
+        console.log('Sample products already stored in DB');
     }
-
-    // We publish the entire Links collection to all clients.
-    // In order to be fetched in real-time to the clients
-    Meteor.publish("links", function () {
-        return LinksCollection.find();
-    });
 });
+
+

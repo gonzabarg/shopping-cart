@@ -6,7 +6,10 @@ productsCollection.schema = new SimpleSchema({
     description: { type: String },
     price: { type: Number },
     image: { type: String },
-    stock: { type: Number, min: 0 },
-    soldCount: { type: Number, min: 0 }
+    thumbnail: { type: String },
+    brand: { type: String },
+    stock: { type: Number, min: 0 }
 });
+
+
 

@@ -1,15 +1,42 @@
 import React from "react";
 
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { productsCollection } from "../../api/collections/products";
+
+import { useSubscribe, useFind } from 'meteor/react-meteor-data';
+
+import { Container, Row, Col } from "react-bootstrap";
 
 import ProductThumbnail from "../components/ProductThumbnail";
 
 const Home = () => {
 
+
+    const isLoading = useSubscribe('products');
+
+    const products = useFind(() => {
+        return productsCollection.find({});
+
+    });
+
+    const Loading = () => <div>
+        <div className="mt-10">
+            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                Loading...
+            </h3>
+        </div>
+    </div>
+
+
+
     const title = {
         textTransform: 'uppercase',
         letterSpacing: '0.1em',
         marginBottom: '0'
+    }
+
+    if (isLoading()) {
+
+        return <Loading />
     }
 
 
@@ -31,13 +58,15 @@ const Home = () => {
                     </Col>
                 </Row>
 
-                <Row className="flex-wrap justify-content-between align-items-start">
+                <Row className="flex-wrap justify-content-start align-items-start">
 
-                    <ProductThumbnail />
-                    <ProductThumbnail />
-                    <ProductThumbnail />
-                    <ProductThumbnail />
-                    <ProductThumbnail />
+                    {products.map((product) => {
+
+                        console.log(product);
+
+                        return <ProductThumbnail product={product} />
+
+                    })}
 
                 </Row>
             </Container>
@@ -45,6 +74,8 @@ const Home = () => {
         </section>
 
     );
+
+
 }
 
 export default Home;
