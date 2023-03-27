@@ -1,10 +1,14 @@
 import React from "react";
 import { useEffect } from "react";
 
-import { useTracker } from 'meteor/react-meteor-data'
+import { Meteor } from 'meteor/meteor'
+
+import { useTracker, useFind, useSubscribe } from 'meteor/react-meteor-data'
+import { cartProductsCollection } from "../../api/collections/cartProducts";
 
 import HeaderMobile from "./HeaderMobile";
 import HeaderDesktop from "./HeaderDesktop";
+
 
 
 const useAccount = () => useTracker(() => {
@@ -15,15 +19,11 @@ const useAccount = () => useTracker(() => {
         userId,
         isLoggedIn: !!userId
     }
-}, [])
-
+}, []);
 
 const Navbar = () => {
 
-    const { user, isLoggedIn } = useAccount();
-
-    console.log('USUARIO LOGUEADO: ', user);
-    console.log('IS LOGGED: ', isLoggedIn);
+    const { user, userId, isLoggedIn } = useAccount();
 
     const [width, setWidth] = React.useState(window.innerWidth);
     const breakpoint = 900;
@@ -37,6 +37,15 @@ const Navbar = () => {
             window.removeEventListener("resize", handleResizeWindow);
         };
     }, []);
+
+    const isLoading = useSubscribe('cartProducts', userId);
+    const cartProducts = useFind(() => {
+
+        return cartProductsCollection.find({ userId: userId });
+    });
+
+    console.log('CART PRODUCTS: ', cartProducts.length);
+    console.log('USER', user.username);
 
 
     const background = {
@@ -62,7 +71,7 @@ const Navbar = () => {
 
                 {console.log(width > breakpoint)}
 
-                {width > breakpoint ? <HeaderDesktop username={user ? user.username : ''} /> : <HeaderMobile />}
+                {width > breakpoint ? <HeaderDesktop username={user.username} isLogged={isLoggedIn} productsQuantity={cartProducts.length} /> : <HeaderMobile />}
 
             </nav>
         </>

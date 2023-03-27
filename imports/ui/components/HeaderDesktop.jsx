@@ -1,11 +1,45 @@
 import React from "react";
+import { Meteor } from 'meteor/meteor'
+
+import { useNavigate } from "react-router";
+
+import { useTracker, useFind, useSubscribe } from "meteor/react-meteor-data"
 
 import Dropdown from 'react-bootstrap/Dropdown';
+import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 import { Link } from "react-router-dom";
 
-const HeaderDesktop = ({ username }) => {
+
+
+const HeaderDesktop = ({ username, isLogged, productsQuantity }) => {
+
+
+    const navigate = useNavigate();
+
+    const handleLogout = (e) => {
+
+        e.preventDefault();
+
+        console.log('Logging out');
+
+        Meteor.logout((err) => {
+
+            if (err) {
+                console.log('ERROR EN LOGOUT: ', err);
+            }
+
+            console.log('Succesfull logout');
+
+            navigate('/');
+
+        })
+
+    }
+
 
     const desktopFlex = {
         width: '95%',
@@ -90,33 +124,51 @@ const HeaderDesktop = ({ username }) => {
                 </div>
 
 
-
-                {/* <div style={optionsContainer}>
-
-                </div> */}
                 <div style={menuContainer}>
 
                     {username ?
-                        <p className="hk-grotesk-semi-bold mb-0 me-2">
-                            {username}
-                        </p> :
-                        console.log('No hay usuario logueado')
+                        <>
+                            <p className="hk-grotesk-semi-bold mb-0 me-2">
+                                {username}
+                            </p>
+                            <Dropdown>
+                                <Dropdown.Toggle variant="transparent" id="dropdown-basic">
+                                    <AccountCircleOutlinedIcon style={{ color: 'black' }} />
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    <Dropdown.Item href="/user-page">
+
+                                        My profile
+
+                                    </Dropdown.Item>
+                                    <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </> :
+                        <Link to="/user-page">
+                            <Button variant="outline-dark" className="rounded-0">
+                                Sign up / Sign in
+                            </Button>
+                        </Link>
                     }
 
-                    <Dropdown>
-                        <Dropdown.Toggle variant="transparent" id="dropdown-basic">
-                            <AccountCircleOutlinedIcon style={{ color: 'black' }} />
-                        </Dropdown.Toggle>
 
-                        <Dropdown.Menu>
-                            <Dropdown.Item href="#/action-1">
-                                <Link className="text-decoration-none text-dark " to='/user-page'>
-                                    My profile
-                                </Link>
-                            </Dropdown.Item>
-                            <Dropdown.Item href="#/action-2">Logout</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
+
+
+
+                    <Link to='/cart' className="text-dark text-decoration-none" >
+                        <div className="position-relative">
+                            <Badge bg="dark" className="position-absolute top-0" pill style={{ fontSize: '0.5rem' }}>
+                                {productsQuantity}
+                            </Badge>
+                            <ShoppingCartOutlinedIcon />
+                        </div>
+                    </Link>
+
+
+
+
 
                 </div>
             </div>

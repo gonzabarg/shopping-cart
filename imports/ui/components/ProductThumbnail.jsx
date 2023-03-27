@@ -22,7 +22,7 @@ const ProductThumbnail = ({ product }) => {
 
                 <Card.Body className="px-0 d-flex flex-row justify-content-between align-items-start">
                     <div>
-                        <Link to={'/product' + product._id} className="text-decoration-none text-dark">
+                        <Link to={'/product/' + product._id} className="text-decoration-none text-dark">
                             <Card.Title className="hk-grotesk product-thumbnail-text">{product.name}</Card.Title>
                         </Link>
                         <Card.Text className="hk-grotesk text-muted product-thumbnail-text">

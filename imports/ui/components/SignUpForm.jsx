@@ -75,7 +75,7 @@ const SignUpForm = () => {
 
                     <div className="mb-4 text-center">
 
-                        <Button variant="outline-dark rounded-0 w-25" type="submit" onClick={signUp}> Sign up </Button>
+                        <Button variant="outline-dark" className="rounded-0 w-25" type="submit" onClick={signUp}> Sign up </Button>
 
                     </div>
 

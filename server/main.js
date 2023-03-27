@@ -2,8 +2,13 @@ import { Meteor } from 'meteor/meteor';
 import { fetch } from 'meteor/fetch';
 
 import { productsCollection } from '../imports/api/collections/products';
-import '../imports/api/methods/products';
+import '../imports/api/methods/productMethods';
 import '../imports/api/publications/productPublications';
+
+import '../imports/api/collections/cartProducts'
+import '../imports/api/methods/cartProductsMethods'
+import '../imports/api/publications/cartProductsPublications'
+
 
 function insertProduct({ name, description, price, brand, image, thumbnail, detail, stock }) {
     productsCollection.insert({ name, description, price, brand, image, thumbnail, detail, stock });

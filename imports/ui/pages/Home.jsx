@@ -8,6 +8,8 @@ import { Container, Row, Col } from "react-bootstrap";
 
 import ProductThumbnail from "../components/ProductThumbnail";
 
+import Loading from '../components/Loading';
+
 const Home = () => {
 
 
@@ -17,15 +19,6 @@ const Home = () => {
         return productsCollection.find({});
 
     });
-
-    const Loading = () => <div>
-        <div className="mt-10">
-            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
-                Loading...
-            </h3>
-        </div>
-    </div>
-
 
 
     const title = {
