@@ -55,8 +55,6 @@ const Home = () => {
 
                     {products.map((product) => {
 
-                        console.log(product);
-
                         return <ProductThumbnail product={product} />
 
                     })}

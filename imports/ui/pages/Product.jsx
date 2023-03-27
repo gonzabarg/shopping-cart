@@ -81,7 +81,7 @@ const Product = () => {
 
     const handleClick = () => {
 
-        Meteor.call('cartProducts.add', { productId: product[0]._id, userId: userId, name: product[0].name, quantity: quantity, price: product[0].price }, (error) => {
+        Meteor.call('cartProducts.add', { productId: product[0]._id, userId: userId, name: product[0].name, image: product[0].image, brand: product[0].brand, quantity: quantity, price: product[0].price }, (error) => {
 
             if (error) {
                 console.log(error);

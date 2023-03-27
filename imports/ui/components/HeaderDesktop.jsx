@@ -145,6 +145,15 @@ const HeaderDesktop = ({ username, isLogged, productsQuantity }) => {
                                     <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
+
+                            <Link to='/cart' className="text-dark text-decoration-none" >
+                                <div className="position-relative">
+                                    <Badge bg="dark" className="position-absolute top-0" pill style={{ fontSize: '0.5rem', right: '0' }}>
+                                        {productsQuantity}
+                                    </Badge>
+                                    <ShoppingCartOutlinedIcon />
+                                </div>
+                            </Link>
                         </> :
                         <Link to="/user-page">
                             <Button variant="outline-dark" className="rounded-0">
@@ -152,23 +161,6 @@ const HeaderDesktop = ({ username, isLogged, productsQuantity }) => {
                             </Button>
                         </Link>
                     }
-
-
-
-
-
-                    <Link to='/cart' className="text-dark text-decoration-none" >
-                        <div className="position-relative">
-                            <Badge bg="dark" className="position-absolute top-0" pill style={{ fontSize: '0.5rem' }}>
-                                {productsQuantity}
-                            </Badge>
-                            <ShoppingCartOutlinedIcon />
-                        </div>
-                    </Link>
-
-
-
-
 
                 </div>
             </div>

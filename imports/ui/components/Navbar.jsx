@@ -38,6 +38,8 @@ const Navbar = () => {
         };
     }, []);
 
+
+
     const isLoading = useSubscribe('cartProducts', userId);
     const cartProducts = useFind(() => {
 
@@ -45,7 +47,9 @@ const Navbar = () => {
     });
 
     console.log('CART PRODUCTS: ', cartProducts.length);
-    console.log('USER', user.username);
+
+
+
 
 
     const background = {
@@ -63,6 +67,24 @@ const Navbar = () => {
 
 
 
+    if (!user) {
+
+        return (
+
+            <>
+                <nav style={background}>
+
+                    {console.log(width > breakpoint)}
+
+
+                    {width > breakpoint ? <HeaderDesktop isLogged={isLoggedIn} /> : <HeaderMobile />}
+
+                </nav>
+            </>
+
+
+        )
+    }
 
 
     return (
@@ -70,6 +92,7 @@ const Navbar = () => {
             <nav style={background}>
 
                 {console.log(width > breakpoint)}
+
 
                 {width > breakpoint ? <HeaderDesktop username={user.username} isLogged={isLoggedIn} productsQuantity={cartProducts.length} /> : <HeaderMobile />}
 
