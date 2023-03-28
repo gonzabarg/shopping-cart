@@ -36,52 +36,9 @@ const Product = () => {
     };
 
 
-    // const handleClick = () => {
-
-    //     if (!cart[0]) {
-
-    //         console.log('userid', userId);
-
-    //         Meteor.call('cart.insert', { userId: userId }, (error) => {
-
-    //             if (error) {
-    //                 console.log(error);
-    //             } else {
-    //                 console.log('Cart created');
-    //             }
-    //         });
-
-    //     }
-
-    //     if (!isLoadingCart() && !isLoadingProducts()) {
-
-    //         console.log('PRODUCT', product);
-
-    //         Meteor.call('cartProducts.add', { productId: product[0]._id, cartId: cart[0]._id, name: product[0].name, quantity: quantity, price: product[0].price }, (error) => {
-
-    //             if (error) {
-    //                 console.log(error);
-    //             } else {
-
-    //                 console.log('Product added to cart');
-    //                 Meteor.call('products.removeFromStock', { productId: product[0]._id, qty: quantity }, (error) => {
-
-    //                     if (error) {
-    //                         console.log('Error actualizando stock', error);
-    //                     } else {
-
-    //                         console.log('Stock actualizado');
-    //                     }
-
-    //                 })
-
-    //             }
-    //         });
-    //     }
-
     const handleClick = () => {
 
-        Meteor.call('cartProducts.add', { productId: product[0]._id, userId: userId, name: product[0].name, image: product[0].image, brand: product[0].brand, quantity: quantity, price: product[0].price }, (error) => {
+        Meteor.call('cartProducts.add', { productId: product[0]._id, userId: userId, name: product[0].name, image: product[0].image, brand: product[0].brand, quantity: quantity, stock: product[0].stock, price: product[0].price, subtotalProduct: product[0].price * quantity }, (error) => {
 
             if (error) {
                 console.log(error);
@@ -89,7 +46,7 @@ const Product = () => {
 
                 console.log('Agregado al carrito');
 
-                Meteor.call('products.removeFromStock', { productId: product[0]._id, qty: quantity }, (error) => {
+                Meteor.call('products.removeFromStock', { productId: product[0]._id, quantity: quantity }, (error) => {
 
                     if (error) {
                         console.log('Error actualizando stock', error);
