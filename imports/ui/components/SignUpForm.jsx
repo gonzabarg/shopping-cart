@@ -1,13 +1,12 @@
-import React from "react";
-import { useNavigate } from "react-router";
+import React from "react"
+import { useNavigate } from "react-router"
 
 
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Alert from 'react-bootstrap/Alert';
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import Alert from 'react-bootstrap/Alert'
 
-
-import { Accounts } from 'meteor/accounts-base';
+import { Accounts } from 'meteor/accounts-base'
 
 const SignUpForm = () => {
 

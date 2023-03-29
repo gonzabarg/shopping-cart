@@ -27,7 +27,7 @@ Meteor.methods({
         return cartProductsCollection.update({ _id: _id }, { $inc: { quantity: -1, stock: 1, subtotalProduct: -price } });
     },
 
-    'cartProducts.delete'({ _id, price, quantity }) {
+    'cartProducts.delete'({ _id }) {
 
         return cartProductsCollection.remove({ _id: _id }, (error, result) => {
 
@@ -38,5 +38,18 @@ Meteor.methods({
 
             return result;
         });
+    },
+
+    'cartProducts.clear'({ userId }) {
+
+        return cartProductsCollection.remove({ userId: userId }, (error, result) => {
+
+            if (error) {
+
+                throw new Meteor.Error(error);
+            }
+
+            return result;
+        })
     }
 })

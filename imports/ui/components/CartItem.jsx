@@ -1,6 +1,5 @@
 import React from "react";
 import { Meteor } from 'meteor/meteor'
-
 import { useTracker } from 'meteor/react-meteor-data'
 import { Image, CloseButton } from 'react-bootstrap'
 
@@ -65,9 +64,6 @@ const CartItem = ({ product }) => {
 
     const handleDelete = () => {
 
-        console.log('handle delete');
-        console.log('Product id: ', product._id);
-        console.log('User id: ', userId);
         const productId = product.productId;
 
         Meteor.call('cartProducts.delete', { _id: product._id }, (error, result) => {

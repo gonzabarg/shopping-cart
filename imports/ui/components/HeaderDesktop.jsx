@@ -1,21 +1,17 @@
-import React from "react";
+import React from "react"
 import { Meteor } from 'meteor/meteor'
 
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router"
+import { Link } from "react-router-dom"
 
-import { useTracker, useFind, useSubscribe } from "meteor/react-meteor-data"
-
-import Dropdown from 'react-bootstrap/Dropdown';
-import Badge from 'react-bootstrap/Badge';
-import Button from 'react-bootstrap/Button';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-
-import { Link } from "react-router-dom";
+import Dropdown from 'react-bootstrap/Dropdown'
+import Badge from 'react-bootstrap/Badge'
+import Button from 'react-bootstrap/Button'
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 
 
-
-const HeaderDesktop = ({ username, isLogged, productsQuantity }) => {
+const HeaderDesktop = ({ username, productsQuantity }) => {
 
 
     const navigate = useNavigate();
@@ -23,8 +19,6 @@ const HeaderDesktop = ({ username, isLogged, productsQuantity }) => {
     const handleLogout = (e) => {
 
         e.preventDefault();
-
-        console.log('Logging out');
 
         Meteor.logout((err) => {
 
@@ -41,57 +35,10 @@ const HeaderDesktop = ({ username, isLogged, productsQuantity }) => {
     }
 
 
-    const desktopFlex = {
-        width: '95%',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-    }
-
-    const logoContainer = {
-        width: 'auto'
-    }
-
-    const optionsContainer = {
-        width: 'auto',
-
-    }
-
-    const navbarItems = {
-
-        width: 'auto',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        marginBottom: '0'
-
-    }
-
-    const navbarItem = {
-        color: 'rgba(0, 0, 0, 0.95)',
-        fontSize: '1rem',
-        fontWeight: 700,
-        padding: '0.5rem 1.5rem',
-        textDecoration: 'none'
-    }
-
-    const menuContainer = {
-        width: 'auto',
-        padding: '0.5rem 1.5rem',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
-
     return (
         <>
-
-            {console.log('VIENDO EL HEADER DESKTOP')}
-            <div style={desktopFlex}>
-                <div style={logoContainer}>
+            <div className="header-flex">
+                <div className="logo-container">
 
                     <Link className="text-decoration-none text-dark" to="/">
 
@@ -103,28 +50,7 @@ const HeaderDesktop = ({ username, isLogged, productsQuantity }) => {
 
                 </div>
 
-                <div style={optionsContainer}>
-
-                    <ul style={navbarItems}>
-
-                        <Link className="hk-grotesk-semi-bold" to="/" style={navbarItem}>
-                            Home
-                        </Link>
-
-                        <Link className="hk-grotesk-semi-bold" to="/about" style={navbarItem}>
-                            About us
-                        </Link>
-
-                        <Link className="hk-grotesk-semi-bold" to="/products" style={navbarItem}>
-                            Products
-                        </Link>
-
-                    </ul>
-
-                </div>
-
-
-                <div style={menuContainer}>
+                <div className="menu-container">
 
                     {username ?
                         <>

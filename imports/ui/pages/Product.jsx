@@ -1,13 +1,13 @@
-import React from "react";
-import { Meteor } from 'meteor/meteor';
-import { useParams } from "react-router";
-import { productsCollection } from "../../api/collections/products";
-import { useTracker } from 'meteor/react-meteor-data'
+import React from "react"
+import { Meteor } from 'meteor/meteor'
+import { useParams } from "react-router"
+import { productsCollection } from "../../api/collections/products"
 
-import { useSubscribe, useFind } from 'meteor/react-meteor-data';
+
+import { useSubscribe, useFind } from 'meteor/react-meteor-data'
 
 import Loading from "../components/Loading";
-import { Container, Row, Col, Image, Button } from "react-bootstrap";
+import { Container, Row, Col, Image, Button } from "react-bootstrap"
 
 
 const Product = () => {

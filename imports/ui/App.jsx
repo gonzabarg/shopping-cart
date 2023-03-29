@@ -1,20 +1,19 @@
-import React from 'react';
-import { Meteor } from 'meteor/meteor';
+import React from 'react'
+import { Meteor } from 'meteor/meteor'
 
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
-import { useLayoutEffect } from 'react';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
+import { useLayoutEffect } from 'react'
 
-import '/client/main.css';
+import '/client/main.css'
 
 
-import Home from './pages/Home';
-import Product from './pages/Product';
-import Cart from './pages/Cart';
-import About from './pages/About';
-import Products from './pages/Products';
-import UserPage from './pages/UserPage';
+import Home from './pages/Home'
+import Product from './pages/Product'
+import Cart from './pages/Cart'
+import UserPage from './pages/UserPage'
+import OrderSummary from './pages/OrderSummary'
 
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar'
 
 const Wrapper = ({ children }) => {
     const location = useLocation();
@@ -41,10 +40,9 @@ export const App = () => (
 
                 <Routes>
                     <Route path='/' element={<Home />}></Route>
-                    <Route path='/about' element={<About />}></Route>
-                    <Route path='/products' element={<Products />}></Route>
                     <Route path='/product/:id' action={({ params }) => { }} element={<Product />}></Route>
                     <Route path='/cart' element={<Cart />}></Route>
+                    <Route path='/order/:id' action={({ params }) => { }} element={<OrderSummary />}></Route>
                     <Route path='/user-page' element={<UserPage />}></Route>
                 </Routes>
 

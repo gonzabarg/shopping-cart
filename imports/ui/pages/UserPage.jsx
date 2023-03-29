@@ -1,20 +1,13 @@
-import React from 'react';
+import React from 'react'
 
+import SignUpForm from '../components/SignUpForm'
+import SignInForm from '../components/SignInForm'
 
-import SignUpForm from '../components/SignUpForm';
-import SignInForm from '../components/SignInForm';
-
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap'
 
 
 
 const UserPage = () => {
-
-    const title = {
-        textTransform: 'uppercase',
-        letterSpacing: '0.1em',
-        marginBottom: '0'
-    }
 
 
     return (
@@ -24,7 +17,7 @@ const UserPage = () => {
                 <Container>
 
                     <div className='py-5 text-center'>
-                        <h1 style={title}>
+                        <h1 className='page-title'>
                             User Page
                         </h1>
                     </div>

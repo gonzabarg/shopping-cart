@@ -1,5 +1,5 @@
 import SimpleSchema from "simpl-schema";
-import { cartsCollection } from "../collections/carts";
+import { cartProductsCollection } from '../collections/cartProducts';
 
 cartsCollection.schema = new SimpleSchema({
     userId: { type: String },

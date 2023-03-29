@@ -1,13 +1,10 @@
-import React from "react";
-import { useEffect } from "react";
-
+import React from "react"
 import { Meteor } from 'meteor/meteor'
 
 import { useTracker, useFind, useSubscribe } from 'meteor/react-meteor-data'
-import { cartProductsCollection } from "../../api/collections/cartProducts";
+import { cartProductsCollection } from "../../api/collections/cartProducts"
 
-import HeaderMobile from "./HeaderMobile";
-import HeaderDesktop from "./HeaderDesktop";
+import HeaderDesktop from "./HeaderDesktop"
 
 
 
@@ -25,20 +22,6 @@ const Navbar = () => {
 
     const { user, userId, isLoggedIn } = useAccount();
 
-    const [width, setWidth] = React.useState(window.innerWidth);
-    const breakpoint = 900;
-
-    useEffect(() => {
-        const handleResizeWindow = () => setWidth(window.innerWidth);
-        // subscribe to window resize event "onComponentDidMount"
-        window.addEventListener("resize", handleResizeWindow);
-        return () => {
-            // unsubscribe "onComponentDestroy"
-            window.removeEventListener("resize", handleResizeWindow);
-        };
-    }, []);
-
-
 
     const isLoading = useSubscribe('cartProducts', userId);
     const cartProducts = useFind(() => {
@@ -49,35 +32,15 @@ const Navbar = () => {
     console.log('CART PRODUCTS: ', cartProducts.length);
 
 
-
-
-
-    const background = {
-        backgroundColor: 'white',
-        width: '100%',
-        height: "5.5rem",
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'sticky',
-        top: '0',
-        zIndex: '5'
-
-    }
-
-
-
     if (!user) {
 
         return (
 
             <>
-                <nav style={background}>
-
-                    {console.log(width > breakpoint)}
+                <nav className="navbar-background">
 
 
-                    {width > breakpoint ? <HeaderDesktop isLogged={isLoggedIn} /> : <HeaderMobile />}
+                    <HeaderDesktop />
 
                 </nav>
             </>
@@ -89,12 +52,9 @@ const Navbar = () => {
 
     return (
         <>
-            <nav style={background}>
+            <nav className="navbar-background">
 
-                {console.log(width > breakpoint)}
-
-
-                {width > breakpoint ? <HeaderDesktop username={user.username} isLogged={isLoggedIn} productsQuantity={cartProducts.length} /> : <HeaderMobile />}
+                <HeaderDesktop username={user.username} productsQuantity={cartProducts.length} />
 
             </nav>
         </>

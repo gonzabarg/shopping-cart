@@ -1,14 +1,13 @@
-import React from "react";
+import React from "react"
 
-import { productsCollection } from "../../api/collections/products";
+import { useSubscribe, useFind } from 'meteor/react-meteor-data'
 
-import { useSubscribe, useFind } from 'meteor/react-meteor-data';
+import { Container, Row, Col } from "react-bootstrap"
 
-import { Container, Row, Col } from "react-bootstrap";
+import ProductThumbnail from "../components/ProductThumbnail"
+import Loading from '../components/Loading'
 
-import ProductThumbnail from "../components/ProductThumbnail";
-
-import Loading from '../components/Loading';
+import { productsCollection } from "../../api/collections/products"
 
 const Home = () => {
 
@@ -19,13 +18,6 @@ const Home = () => {
         return productsCollection.find({});
 
     });
-
-
-    const title = {
-        textTransform: 'uppercase',
-        letterSpacing: '0.1em',
-        marginBottom: '0'
-    }
 
     if (isLoading()) {
 
@@ -41,7 +33,7 @@ const Home = () => {
 
                 <Row>
                     <Col xl={8} className="mx-auto text-center mb-5">
-                        <h3 style={title}>
+                        <h3 className="page-title">
                             Take a look at our products
                         </h3>
 

@@ -9,6 +9,11 @@ import '../imports/api/collections/cartProducts'
 import '../imports/api/methods/cartProductsMethods'
 import '../imports/api/publications/cartProductsPublications'
 
+import '../imports/api/collections/orders'
+import '../imports/api/methods/orderMethods'
+import '../imports/api/publications/ordersPublications'
+
+
 
 function insertProduct({ name, description, price, brand, image, thumbnail, detail, stock }) {
     productsCollection.insert({ name, description, price, brand, image, thumbnail, detail, stock });

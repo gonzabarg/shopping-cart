@@ -1,12 +1,11 @@
 import React from "react";
+import { Spinner } from "react-bootstrap";
 
 
-const Loading = () => <div>
-    <div className="mt-10">
-        <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
-            Loading...
-        </h3>
-    </div>
+const Loading = () => <div className="w-100 d-flex justify-content-center align-items-center">
+    <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+    </Spinner>
 </div>
 
 export default Loading;
