@@ -29,7 +29,7 @@ const Home = () => {
 
         <section>
 
-            <Container className="py-6" >
+            <Container className="py-5" >
 
                 <Row>
                     <Col xl={8} className="mx-auto text-center mb-5">

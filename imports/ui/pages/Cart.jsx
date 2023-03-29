@@ -43,10 +43,11 @@ const Cart = () => {
     const placeOrder = () => {
 
         const orderNumber = Random.hexString(8);
+        console.log(typeof orderNumber);
         const dateToday = new Date();
 
 
-        Meteor.call('orders.insert', { number: orderNumber, username: user.username, products: cartProducts, createdAt: dateToday, subtotal: subtotal, taxes: taxes, total: total }, (error) => {
+        Meteor.call('orders.insert', { number: orderNumber, userId: userId, username: user.username, products: cartProducts, createdAt: dateToday, subtotal: subtotal, taxes: taxes, total: total }, (error) => {
 
             if (error) {
                 console.log(error);
@@ -77,80 +78,80 @@ const Cart = () => {
     }
 
     return (
-        <>
-            <Container className="my-5">
-                <Row>
-                    <h3 className="hk-grotesk-semi-bold my-3">
-                        Shopping cart
-                    </h3>
-                </Row>
-                <Row className="justify-content-between">
-                    <Col lg={6} >
 
-                        {cartProducts.length == 0 ?
+        <Container className="my-5">
+            <Row>
+                <h3 className="hk-grotesk-semi-bold my-3">
+                    Shopping cart
+                </h3>
+            </Row>
+            <Row className="justify-content-between">
+                <Col lg={6} >
 
-                            <>
-                                <p>
-                                    No products added to cart yet.
-                                </p>
+                    {cartProducts.length == 0 ?
 
-                                <Link to="/" className='text-decoration-none'>
-                                    <Button variant="dark">
-                                        Go shopping
-                                    </Button>
-                                </Link>
+                        <>
+                            <p>
+                                No products added to cart yet.
+                            </p>
 
-                            </>
-                            :
-                            console.log('Hay productos en el carrito')
-                        }
+                            <Link to="/" className='text-decoration-none'>
+                                <Button variant="dark">
+                                    Go shopping
+                                </Button>
+                            </Link>
 
-                        {cartProducts.map(product =>
+                        </>
+                        :
+                        console.log('Hay productos en el carrito')
+                    }
 
-                            <CartItem product={product} />
+                    {cartProducts.map(product =>
+
+                        <CartItem product={product} />
 
 
-                        )}
+                    )}
 
-                    </Col>
-                    <Col lg={5}>
-                        <div className="cart-total-container">
-                            <div className="hk-grotesk-medium" style={{ fontSize: '1.2rem' }}>
-                                Order summary
-                            </div>
-                            <div className="w-100 d-flex flex-row justify-content-between py-3" style={{ borderBottom: '1px solid #D3D3D3' }}>
-                                <span className="hk-grotesk text-muted">
-                                    Subtotal
-                                </span>
-                                <span className="hk-grotesk-medium">
-                                    ${subtotal}
-                                </span>
-                            </div>
-                            <div className="w-100 d-flex flex-row justify-content-between py-3" style={{ borderBottom: '1px solid #D3D3D3' }}>
-                                <span className="hk-grotesk text-muted">
-                                    Tax estimate
-                                </span>
-                                <span className="hk-grotesk-medium">
-                                    ${taxes}
-                                </span>
-                            </div>
-                            <div className="w-100 d-flex flex-row justify-content-between py-3 hk-grotesk-medium" >
-                                <span >
-                                    Order total
-                                </span>
-                                <span >
-                                    ${total}
-                                </span>
-                            </div>
-
-                            <Button variant="dark" className="w-100 my-3 rounded-0" onClick={placeOrder} >
-                                Checkout
-                            </Button>
+                </Col>
+                <Col lg={5}>
+                    <div className="cart-total-container">
+                        <div className="hk-grotesk-medium" style={{ fontSize: '1.2rem' }}>
+                            Order summary
                         </div>
-                    </Col>
-                </Row>
-            </Container>
-        </>
+                        <div className="w-100 d-flex flex-row justify-content-between py-3" style={{ borderBottom: '1px solid #D3D3D3' }}>
+                            <span className="hk-grotesk text-muted">
+                                Subtotal
+                            </span>
+                            <span className="hk-grotesk-medium">
+                                ${subtotal}
+                            </span>
+                        </div>
+                        <div className="w-100 d-flex flex-row justify-content-between py-3" style={{ borderBottom: '1px solid #D3D3D3' }}>
+                            <span className="hk-grotesk text-muted">
+                                Tax estimate
+                            </span>
+                            <span className="hk-grotesk-medium">
+                                ${taxes}
+                            </span>
+                        </div>
+                        <div className="w-100 d-flex flex-row justify-content-between py-3 hk-grotesk-medium" >
+                            <span >
+                                Order total
+                            </span>
+                            <span >
+                                ${total}
+                            </span>
+                        </div>
+
+                        <Button variant="dark" className="w-100 my-3 rounded-0" onClick={placeOrder} >
+                            Checkout
+                        </Button>
+                    </div>
+                </Col>
+            </Row>
+        </Container>
+
     )
 }
 

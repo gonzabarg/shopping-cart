@@ -49,16 +49,23 @@ const Navbar = () => {
         )
     }
 
+    if (!isLoading()) {
 
-    return (
-        <>
-            <nav className="navbar-background">
+        return (
+            <>
+                <nav className="navbar-background">
 
-                <HeaderDesktop username={user.username} productsQuantity={cartProducts.length} />
+                    <HeaderDesktop username={user.username} productsQuantity={cartProducts.length} />
 
-            </nav>
-        </>
-    )
+                </nav>
+            </>
+        )
+
+
+    }
+
+
+
 }
 
 export default Navbar;

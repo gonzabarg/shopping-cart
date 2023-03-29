@@ -36,12 +36,15 @@ const Product = () => {
     };
 
 
+
     const handleClick = () => {
 
         Meteor.call('cartProducts.add', { productId: product[0]._id, userId: userId, name: product[0].name, image: product[0].image, brand: product[0].brand, quantity: quantity, stock: product[0].stock, price: product[0].price, subtotalProduct: product[0].price * quantity }, (error) => {
 
             if (error) {
+
                 console.log(error);
+
             } else {
 
                 console.log('Agregado al carrito');

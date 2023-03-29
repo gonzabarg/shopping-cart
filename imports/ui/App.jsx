@@ -14,6 +14,7 @@ import UserPage from './pages/UserPage'
 import OrderSummary from './pages/OrderSummary'
 
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 
 const Wrapper = ({ children }) => {
     const location = useLocation();
@@ -30,26 +31,31 @@ const Wrapper = ({ children }) => {
 
 export const App = () => (
 
+    <div style={{ minHeight: '100vh' }}>
+        <BrowserRouter>
+            <Wrapper>
 
-    <BrowserRouter>
-        <Wrapper>
+                <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
 
-            <div style={{ height: '100vh' }}>
+                    <Navbar />
 
-                <Navbar />
-
-                <Routes>
-                    <Route path='/' element={<Home />}></Route>
-                    <Route path='/product/:id' action={({ params }) => { }} element={<Product />}></Route>
-                    <Route path='/cart' element={<Cart />}></Route>
-                    <Route path='/order/:id' action={({ params }) => { }} element={<OrderSummary />}></Route>
-                    <Route path='/user-page' element={<UserPage />}></Route>
-                </Routes>
+                    <Routes>
+                        <Route path='/' element={<Home />}></Route>
+                        <Route path='/product/:id' action={({ params }) => { }} element={<Product />}></Route>
+                        <Route path='/cart' element={<Cart />}></Route>
+                        <Route path='/order/:id' action={({ params }) => { }} element={<OrderSummary />}></Route>
+                        <Route path='/user-page' element={<UserPage />}></Route>
+                    </Routes>
 
 
-            </div>
+                    <Footer />
 
-        </Wrapper>
-    </BrowserRouter>
+
+                </div>
+
+            </Wrapper>
+        </BrowserRouter>
+    </div>
+
 
 );
